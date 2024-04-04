@@ -5,14 +5,23 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return MaterialApp(title: 'Flutter Demo', home: firstPage());
+  }
 }
 
-class _MyAppState extends State<MyApp> {
+class firstPage extends StatefulWidget {
+  const firstPage({super.key});
+
+  @override
+  State<firstPage> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<firstPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -36,10 +45,11 @@ class _MyAppState extends State<MyApp> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(40.0),
-                        bottomRight: Radius.circular(40.0),
-                        topLeft: Radius.circular(40.0),
-                        bottomLeft: Radius.circular(40.0)),
+                      topRight: Radius.circular(40.0),
+                      //bottomRight: Radius.circular(40.0),
+                      topLeft: Radius.circular(40.0),
+                      //bottomLeft: Radius.circular(40.0)
+                    ),
                   ),
                   child: Center(
                     child: Column(
@@ -66,24 +76,24 @@ class _MyAppState extends State<MyApp> {
                         ),
                         SizedBox(height: 50),
                         SizedBox(
-                            width: 150, // Adjust the width as needed
-                            height: 50, // Adjust the height as needed
-                            child: ElevatedButton(
-                              onPressed: () {
-                                 Navigator.push(
-                                 context,
+                          width: 150, // Adjust the width as needed
+                          height: 50, // Adjust the height as needed
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
                                 MaterialPageRoute(
-                                builder: (context) => LoginPage()));
-                              },
-                              style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                  Color.fromARGB(255, 124, 182,
-                                      146), // Change the color here
-                                ),
-                              ),
-                              child: const Text('Next >'),
-                            )),
+                                    builder: (context) => LoginPage()));
+                          },
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                              Color.fromARGB(
+                                  255, 124, 182, 146), // Change the color here
+                            ),
+                          ),
+                          child: const Text('Next >'),
+                        )
                       ],
                     ),
                   ),
